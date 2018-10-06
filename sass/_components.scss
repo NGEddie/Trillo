@@ -12,6 +12,12 @@
   align-items: center;
   justify-content: center;
 
+  @media only screen and (max-width:$bp-smallest){
+    order: 1;
+    flex: 1 0 80%;
+    background-color: var(--color-grey-light-2);
+  }
+
   &__input {
     font-family: inherit;
     font-size: inherit;
@@ -124,12 +130,27 @@
   list-style: none;
   margin-top: 3.5rem;
 
+  @media only screen and (max-width:$bp-medium) {
+    display: flex;
+    margin: 0;
+  }
+
 
   &__item {
     position: relative;
 
     &:not(:last-child) {
       margin-bottom: 0.5rem;
+
+      @media only screen and (max-width:$bp-medium) {
+        margin: 0;
+      }
+    }
+   
+    @media only screen and (max-width:$bp-medium) {
+      flex: 1;
+      margin: 0;
+      
     }
   }
 
@@ -169,6 +190,19 @@
     position: relative;
     align-items: center;
     z-index: 10;
+
+    @media only screen and (max-width:$bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    @media only screen and (max-width:$bp-small) {
+      flex-direction: column;
+      padding: 1rem 0.5rem;
+      margin-right: 0;
+      
+    }
+
   }
 
   &__icon {
@@ -176,6 +210,13 @@
     height: 1.75rem;
     fill: var(--color-grey-light-1);
     margin-right: 2rem;
+
+    @media only screen and (max-width:$bp-small) {
+      margin-right: 0;
+      margin-bottom: 0.7rem;    
+      width: 1.5rem;
+      height: 1.5rem;  
+    }
   }
 
 }
@@ -185,6 +226,11 @@
   text-align: center;
   padding: 2.5rem;
   color: var(--color-grey-light-4);
+
+  @media only screen and (max-width:$bp-medium) {
+    display: none;
+  }
+
 }
 
 
@@ -216,6 +262,12 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
+
+    @media only screen and (max-width:$bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+      
+    }
   }
 
   &__stars {
@@ -252,17 +304,29 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    @media only screen and (max-width:$bp-small) {
+      padding: 0 1.5rem;    
+    }
   }
 
   &__rating-average {
     font-size: 2.25rem;
     font-weight: 300;
     margin-bottom: -3px;
+
+    @media only screen and (max-width:$bp-small) {
+      font-size: 1.8rem;
+    }
   }
 
   &__rating-count {
     font-size: 0.8rem;
     text-transform: uppercase;
+
+    @media only screen and (max-width:$bp-small) {
+      font-size: 0.5rem;
+    }
   }
 
 }
@@ -316,21 +380,6 @@
 
 }
 
-.detail {
-  font-size: 1.4rem;
-  display: flex;
-  padding: 4.5rem;
-  background-color: var(--color-grey-light-1);
-  border-bottom: 1px solid var(--color-grey-light-2);
-}
-
-.description {
-  background-color: #fff;
-  box-shadow: 0 2rem 5rem rgba(0,0,0,0.1);
-  padding: 3rem;
-  flex: 0 0 60%;
-  margin-right: 4.5rem;
-}
 
 .paragraph:not(:last-of-type) {
   margin-bottom: 2rem;
@@ -387,8 +436,12 @@
     border: 3px solid #fff;
 
     &:not(:last-child){
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
+  }
+
+  &__friends {
+    display: flex;
   }
 
   &__count {
@@ -402,6 +455,11 @@
   padding: 3rem;
   margin-bottom: 3.5rem;
   position: relative;
+
+  @media only screen and (max-width:$bp-medium) {
+   padding: 2rem;
+   margin-bottom: 3rem; 
+  }
 
   &__text {
     z-index: 10;
@@ -457,4 +515,69 @@
     z-index: 1;
   }
 
+}
+
+
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+
+  @media only screen and (max-width:$bp-medium) {
+   padding: 2.5rem 0; 
+  }
+
+  &__book-now {
+    text-transform: uppercase;
+    font-size: 1.5 rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.btn {
+  font-size: 1.5rem;
+  border: none;
+  font-weight: 300;
+  border-radius: 100px;
+  text-transform: uppercase;
+  background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+
+  & > * {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    transition: all 0.2s;
+
+  }
+
+  &__visible {
+    padding: 2rem 7.5rem;
+  }
+
+  &__invisible {
+    position: absolute;
+    padding: 2rem 0;
+    left: 0;
+    top: -100%;
+  }
+
+  &:hover{
+    background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+    cursor: pointer;
+  }
+  &:hover &__visible {
+    transform: translateY(100%)
+  }
+
+  &:hover &__invisible {
+    top: 0;
+  }
+
+  &:focus {
+    outline: none;
+    animation: pulsate 1s infinite;
+  }
 }
